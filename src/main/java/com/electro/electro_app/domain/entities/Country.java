@@ -3,6 +3,7 @@ package com.electro.electro_app.domain.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.electro.electro_app.infraestructure.utils.validations.ExistsByCountryname;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -15,6 +16,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +33,8 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ExistsByCountryname
+    @NotNull(message = "El nombre del pais es requerido")
     @Column(length = 50, nullable = false)
     private String name;
 
