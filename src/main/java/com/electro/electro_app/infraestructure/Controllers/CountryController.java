@@ -61,7 +61,7 @@ public class CountryController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Country country) {
         Country existingCountry = countryService.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Error: el país no existe"));
+                .orElseThrow(() -> new EntityNotFoundException("Error: el país no existe intente otro"));
         existingCountry.setName(country.getName());
         return ResponseEntity.ok(countryService.save(existingCountry));
     }
